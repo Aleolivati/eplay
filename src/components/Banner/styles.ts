@@ -8,6 +8,7 @@ export const Image = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   font-weight: bold;
+  position: relative;
 
   ${TagContainer} {
     position: absolute;
@@ -20,6 +21,17 @@ export const Image = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    z-index: 1;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    content: '';
   }
 `
 
