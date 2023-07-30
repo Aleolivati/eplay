@@ -1,14 +1,16 @@
-import { useGetFeaturedGamesQuery } from '../../services/api'
 import Tag from '../Tag'
 import Button from '../Button'
-import { formatPrice } from '../ProductsList'
-import { Image, Price, Title } from './styles'
+import Loader from '../Loader'
+
+import { useGetFeaturedGamesQuery } from '../../services/api'
+import { parseToBrl } from '../../utils'
+
+import * as S from './styles'
 
 const Banner = () => {
   const { data: game } = useGetFeaturedGamesQuery()
 
   // const [game, setGame] = useState<Game>()
-
   // useEffect(() => {
   //   fetch('https://fake-api-tau.vercel.app/api/eplay/destaque')
   //     .then((res) => res.json())
@@ -16,19 +18,19 @@ const Banner = () => {
   // }, [])
 
   if (!game) {
-    return <h3>Carregando ...</h3>
+    return <Loader />
   }
 
   return (
-    <Image style={{ backgroundImage: `url(${game.media.cover})` }}>
+    <S.Image style={{ backgroundImage: `url(${game.media.cover})` }}>
       <div className="container">
         <Tag size="big">Destaque do dia</Tag>
         <div>
-          <Title>{game.name}</Title>
-          <Price>
-            De <span>{formatPrice(game.prices.old)}</span> <br />
-            Por apenas {formatPrice(game.prices.current)}
-          </Price>
+          <S.Title>{game.name}</S.Title>
+          <S.Price>
+            De <span>{parseToBrl(game.prices.old)}</span> <br />
+            Por apenas {parseToBrl(game.prices.current)}
+          </S.Price>
         </div>
         <Button
           type="link"
@@ -38,7 +40,7 @@ const Banner = () => {
           Aproveitar
         </Button>
       </div>
-    </Image>
+    </S.Image>
   )
 }
 

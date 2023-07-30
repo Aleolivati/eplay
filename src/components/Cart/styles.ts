@@ -1,5 +1,5 @@
 import { styled } from 'styled-components'
-import { colors } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { ButtonContainer } from '../Button/styles'
 import { TagContainer } from '../Tag/styles'
 import close from '../../assets/images/fechar.png'
@@ -39,6 +39,23 @@ export const Sidebar = styled.aside`
   ${ButtonContainer} {
     max-width: 100%;
     width: 100%;
+  }
+
+  .empty-text {
+    font-size: 14px;
+    line-height: 22px;
+    color: ${colors.white};
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .mobileButton {
+    display: none;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      display: block;
+      margin-top: 16px;
+    }
   }
 `
 

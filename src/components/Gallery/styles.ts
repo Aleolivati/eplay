@@ -36,7 +36,7 @@ export const Item = styled.li`
     ${Action} {
       opacity: 1;
       transition: opacity ease 0.5s;
-      cursor: pointer;
+      cursor: zoom-in;
     }
   }
 `
@@ -52,7 +52,7 @@ export const Modal = styled.div`
   align-items: center;
   justify-content: center;
 
-  &.visible {
+  &.is-visible {
     display: flex;
   }
 

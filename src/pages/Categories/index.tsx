@@ -1,3 +1,6 @@
+import Loader from '../../components/Loader'
+import ProductsList from '../../components/ProductsList'
+
 import {
   useGetActionGamesQuery,
   useGetFightGamesQuery,
@@ -6,14 +9,13 @@ import {
   useGetSportGamesQuery
 } from '../../services/api'
 
-import ProductsList from '../../components/ProductsList'
-
 const Categories = () => {
-  const { data: action } = useGetActionGamesQuery()
-  const { data: sport } = useGetSportGamesQuery()
-  const { data: simulation } = useGetSimulationGamesQuery()
-  const { data: fight } = useGetFightGamesQuery()
-  const { data: rpg } = useGetRpgGamesQuery()
+  const { data: action, isLoading: isLoadingAction } = useGetActionGamesQuery()
+  const { data: sport, isLoading: isLoadingSport } = useGetSportGamesQuery()
+  const { data: simulation, isLoading: isLoadingSimulation } =
+    useGetSimulationGamesQuery()
+  const { data: fight, isLoading: isLoadingFight } = useGetFightGamesQuery()
+  const { data: rpg, isLoading: isLoadingRpg } = useGetRpgGamesQuery()
 
   // const [gamesAction, setGamesAction] = useState<Game[]>([])
   // const [gamesSports, setGamesSports] = useState<Game[]>([])
@@ -51,26 +53,41 @@ const Categories = () => {
           title="Ação"
           games={action}
           id="action"
+          isLoading={isLoadingAction}
         />
         <ProductsList
           background="gray"
           title="Esportes"
           games={sport}
           id="sports"
+          isLoading={isLoadingSport}
         />
         <ProductsList
           background="black"
           title="Simulação"
           games={simulation}
           id="simulation"
+          isLoading={isLoadingSimulation}
         />
-        <ProductsList background="gray" title="Luta" games={fight} id="fight" />
-        <ProductsList background="black" title="RPG" games={rpg} id="rpg" />
+        <ProductsList
+          background="gray"
+          title="Luta"
+          games={fight}
+          id="fight"
+          isLoading={isLoadingFight}
+        />
+        <ProductsList
+          background="black"
+          title="RPG"
+          games={rpg}
+          id="rpg"
+          isLoading={isLoadingRpg}
+        />
       </>
     )
   }
 
-  return <h4>Carregando ...</h4>
+  return <Loader />
 }
 
 export default Categories
